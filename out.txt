@@ -1,0 +1,10 @@
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0] https://ex.kpfu.ru
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0] https://vk.com/kazan_federal_university
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0] https://www.instagram.com/kazanfederaluniversity/
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0] https://www.facebook.com/KazanUniversity/
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0] https://www.youtube.com/univertv
+[0, 1, 0, 0, 0, 1, 0, 0, 0, 0] https://kpfu.ru/eng
+[0, 1, 1, 1, 1, 0, 0, 0, 0, 0] http://tat.kpfu.ru/
+[0, 0, 0, 0, 0, 1, 0, 1, 1, 1] https://kpfu.ru/es
+[0, 0, 0, 0, 0, 1, 0, 1, 1, 1] https://kpfu.ru/fr
+[0, 0, 0, 0, 0, 1, 0, 1, 1, 1] https://kpfu.ru/tr
