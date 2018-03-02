@@ -3,7 +3,7 @@ class PageRank
   @matrix
   @page_rank
   @builder
-  @d=0.85
+  @d
 
 
   def initialize(arguments)
@@ -11,6 +11,7 @@ class PageRank
     @matrix = @builder.build_matrix
     size = arguments[1]
     @page_rank = Array.new(size.to_i){|i| 1}
+    @d = 0.85
   end
 
   def print
@@ -24,20 +25,30 @@ class PageRank
         new_page_rank.push line.each_with_index.map{ |e, i| e*@page_rank[i] }.reduce(:+)
       }
       @page_rank = new_page_rank
-      new_page_rank = Array.newl
+      new_page_rank = Array.new
     }
     @page_rank
   end
 
-  def build_page_rank_array
-
+  def calc_page_rank
+      @matrix.each_with_index { |line, i|
+        @page_rank[i] = page_rank(line)
+      }
   end
 
   def page_rank(ranks)
-    (1-@d) + @d*(sum_rank(ranks))
+    (1-@d) + @d*(self.sum_rank(ranks))
   end
 
   def sum_rank(ranks)
-    page_rank(ranks)
+    rn = Array.new
+    ranks.each_with_index{ |r,i|
+      if r != 0
+        rn.push @page_rank[i] / r
+      else
+        rn.push 0
+      end
+     }
+     rn.sum
   end
 end
