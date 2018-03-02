@@ -4,6 +4,10 @@ require 'open-uri'
 class PageRankBuilder
   @hrefs = Array.new
 
+  def getHrefs
+    @hrefs
+  end
+
   def initialize(url, count, flag="0")
     @url = url
     puts 'fetching..'
@@ -36,19 +40,20 @@ class PageRankBuilder
     }
     line = Array.new
     @hrefs.each{ |link|
-      if hrefs.include? link
-        line.push 1
-      else
-        line.push 0
-      end
+      line.push hrefs.count link
     }
     line
   end
 
-  def build
+  def build_matrix
     matrix = Array.new(Array.new)
 
     @hrefs.each_with_index { |href, i| matrix[i] = getLine(href) }
+    matrix
+  end
+
+  def print
+    matrix = build_matrix
     f = File.new('out.txt', 'w')
     matrix.each_with_index { |line, i|
       f.write(line.to_s + " " +  @hrefs[i]+"\n")
