@@ -1,14 +1,7 @@
 class PageRank
-
-  @matrix
-  @page_rank
-  @builder
-  @d
-
-
   def initialize(arguments, from_file = true)
     @builder = PageRankBuilder.new(arguments[0],arguments[1],arguments[2],false)
-    @matrix = @builder.build_matrix()
+    @matrix = @builder.getMatrix
     size = arguments[1]
     @page_rank = Array.new(size.to_i){|i| 1}
     @d = 0.85
@@ -16,9 +9,13 @@ class PageRank
 
   def print
     hrefs = @builder.getHrefs
+    p_r_s = @page_rank.sort{ |x, y| y<=>x }
     @page_rank.each_with_index{ |e, i |
-      puts e.to_s + " -> " + hrefs[i]
+      i = p_r_s.index(e)
+      p_r_s[i] = nil
+      puts "[" + i.to_s + "] " +e.to_s + " -> " + hrefs[i]
     }
+    @builder.print_to_file
   end
 
   def multiply
@@ -34,9 +31,7 @@ class PageRank
   end
 
   def calc_page_rank
-
       2.times{
-
         new_page_rank = Array.new
         @matrix.each_with_index { |line, i|
           new_page_rank.push page_rank(line)
