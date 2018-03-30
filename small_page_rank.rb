@@ -1,6 +1,6 @@
 class SmallPageRank
-  def initialize(arguments, from_file = true)
-    @builder = PageRankBuilder.new(arguments[0], arguments[1], arguments[2], true)
+  def initialize(arguments, page_rank_builder)
+    @builder = page_rank_builder
     @small_matrix = @builder.get_small_matrix
     size = arguments[1]
     @page_rank = Array.new(size.to_i){|i| 1}
@@ -19,7 +19,7 @@ class SmallPageRank
   end
 
   def calc_page_rank
-      2.times{
+      10.times{
         new_page_rank = Array.new
         line = Array.new
         i = 0

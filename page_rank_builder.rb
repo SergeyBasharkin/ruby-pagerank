@@ -64,7 +64,11 @@ class PageRankBuilder
 
   def getLine(url)
     puts 'fetching.. '+ url
-    html = open(url)
+    begin
+      html = open(url)
+    rescue Exception => error
+      return Array.new(@hrefs.size){|i| 0}
+    end
     puts 'done'
 
     puts 'parsing..'
@@ -116,7 +120,9 @@ class PageRankBuilder
 
   def build_matrix
     @matrix = Array.new(Array.new)
-    @hrefs.each_with_index { |href, i| @matrix[i] = getLine(href) }
+    @hrefs.each_with_index { |href, i|
+      @matrix[i] = getLine(url)
+    }
     @hrefs.size.times {|i| @matrix[i][i] = 0 }
     @matrix
   end
